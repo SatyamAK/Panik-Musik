@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panik_musik/bottomnavbar.dart';
 import 'package:panik_musik/constants/theme.dart';
 import 'package:panik_musik/screens/login/loginscreen.dart';
 
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LoginScreen();
+    return BottomNavBar();
   }
 }

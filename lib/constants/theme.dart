@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme(){
   return ThemeData(
-    primaryColor: Colors.deepPurple[400],
+    primaryColor: Colors.deepPurpleAccent,
     accentColor: Colors.deepPurpleAccent,
     appBarTheme: AppBarTheme(  
       centerTitle: true,
@@ -49,7 +49,8 @@ ThemeData lightTheme(){
       elevation:12,
       shape:RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12)
-      )
-    )
+      ),
+      shadowColor: Colors.deepPurpleAccent
+    ),
   );
 }

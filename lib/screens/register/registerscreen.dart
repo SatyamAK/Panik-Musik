@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:panik_musik/constants/validator.dart';
+import 'package:panik_musik/services/authService.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -6,13 +8,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool isProcessing = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
-        child: Form( 
+        child: (isProcessing)?Center(child: CircularProgressIndicator()):Form( 
+          key: _formKey,
           child: Card(
             margin: EdgeInsets.symmetric(horizontal:12, vertical:200),
             child: Container( 
@@ -26,37 +34,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Image.asset('assets/panik.png', fit: BoxFit.contain,),
                   ),
                   SizedBox(height:12),
+                  SizedBox(height: 4),
                   Container(
                     height: 42,
                     child: TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration( 
-                        contentPadding: EdgeInsets.only(top:4, bottom:4, left:16),
-                        border: OutlineInputBorder(  
-                          borderRadius: BorderRadius.circular(22)
-                        ), 
+                        contentPadding: EdgeInsets.only(bottom:8, left:16),
                         hintText: 'Email'
-                      )
+                      ),
+                      validator: validateEmail,
                     ),
                   ),
                   SizedBox(height: 9),
                   Container(
                     height: 42,
                     child: TextFormField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration( 
-                        contentPadding: EdgeInsets.only(top:4, bottom:4, left:16), 
-                        border: OutlineInputBorder(  
-                          borderRadius: BorderRadius.circular(22)
-                        ),
+                        contentPadding: EdgeInsets.only(bottom: 8, left:16), 
                         hintText: 'Password'
-                      )
+                      ),
+                      validator: validatePass,
                     ),
                   ),
                   SizedBox(height: 24),
                   Container(
                     width: 100,
                     child:ElevatedButton( 
-                      onPressed: (){},
+                      onPressed: () async {
+                        if(!_formKey.currentState.validate()){
+                          return null;
+                        }
+                        setState(() {
+                          isProcessing = true;
+                        });
+                        AuthService().register(
+                          emailController.text, passwordController.text, context
+                        );
+                        isProcessing = false;
+                      },
                       child:Text('Register')
                     )
                   ),

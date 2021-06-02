@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:panik_musik/screens/home/homescreen.dart';
 import 'package:panik_musik/screens/profile/profilepage.dart';
+import 'package:panik_musik/services/songservice.dart';
+import 'package:provider/provider.dart';
+
+import 'models/song.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -42,7 +46,11 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
         body: TabBarView(
           controller: _tabController,
           children: [
-            HomePage(),
+            StreamProvider<List<Song>>.value(
+              value: SongService().songStream,
+              initialData: [],
+              child: HomePage(),
+            ),
             ProfilePage()
           ]
         ),

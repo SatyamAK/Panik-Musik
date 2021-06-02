@@ -27,8 +27,8 @@ class SongCard extends StatelessWidget{
                 fit: BoxFit.fill,
               )
             ),
-            SizedBox(height:4),
-            Text(title, overflow: TextOverflow.ellipsis,)
+            SizedBox(height:8),
+            Text(title, softWrap: true, textAlign: TextAlign.center,)
           ]
         )
       ),

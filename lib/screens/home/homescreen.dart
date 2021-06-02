@@ -1,30 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:panik_musik/models/song.dart';
 import 'package:panik_musik/screens/home/songCardList.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Song> songs = [
-      Song(
-        title: 'Shilloute',
-        cover: 'https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
-        category: 'anime',
-        franchise: 'Naruto Shippuden',
-        artist: 'KANABOON',
-        artistImg: 'https://thisis-images.scdn.co/37i9dQZF1DZ06evO2eHcgr-default.jpg'
-      ),
-      Song(
-        title: 'Spiral',
-        cover: 'https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
-        category: 'video game',
-        franchise: 'Naruto Ultimate Ninja Storm 4',
-        artist: 'KANABOON',
-        artistImg: 'https://thisis-images.scdn.co/37i9dQZF1DZ06evO2eHcgr-default.jpg'
-      ),
-    ];
-
-    return SingleChildScrollView(
+    List<Song> songs = Provider.of<List<Song>>(context);
+    //songs.forEach((element) {print(element.franchise);});
+    print(songs.toString());
+    return (songs.length==0)?Center(child:CircularProgressIndicator()):SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal:12),
       child: Column(
         mainAxisSize: MainAxisSize.min,

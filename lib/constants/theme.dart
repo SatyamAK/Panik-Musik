@@ -43,6 +43,9 @@ ThemeData lightTheme(){
       headline5: TextStyle(  
         fontSize: 24,
         fontWeight: FontWeight.bold
+      ),
+      headline6: TextStyle(
+        fontSize: 22
       )
     ),
     cardTheme: CardTheme(

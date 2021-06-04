@@ -1,13 +1,14 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+import 'package:panik_musik/models/song.dart';
 import 'package:panik_musik/screens/player/audiController.dart';
 
 class AudioPlayerScreen extends StatefulWidget{
   final String title;
-  final String id;
+  final Song song;
   const AudioPlayerScreen({
     this.title,
-    this.id
+    this.song
   });
 
   @override
@@ -19,19 +20,29 @@ _backgroundTaskEntrypoint() {
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
- 
+
+  MediaItem mediaItem;
   Future<void> playonEnter() async{
+    mediaItem = MediaItem(  
+      id: widget.song.music,
+      artist: widget.song.artist,
+      album: widget.song.franchise,
+      title: widget.song.title,
+      artUri: Uri.parse(widget.song.cover)
+    );
     if(AudioService.running){
-      await AudioService.playFromMediaId(widget.id);
+      if(AudioService.currentMediaItem.id==mediaItem.id){
+        return ;
+      }
+      await AudioService.playMediaItem(mediaItem);
     }
     else{
-      print('starting');
       await AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
-      await AudioService.playFromMediaId(widget.id);
+      await AudioService.playMediaItem(mediaItem);
     }
   }
   @override
-  void initState(){
+  void initState() {
     playonEnter();
     super.initState();
   }
@@ -53,11 +64,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 320,
-                  width: 320,
-                  color: Colors.red,
-                  //child: /*Image.network('')*/ 
+                  height: 400,
+                  width: 300,
+                  child: Image.network(mediaItem.artUri.toString(), fit: BoxFit.fill,)
                 ),
+                SizedBox(height:24),
+                Text('By '+mediaItem.artist, style: Theme.of(context).textTheme.bodyText2,),
                 SizedBox(height:24),
                 if(state.data.playing)
                   ElevatedButton(  
@@ -84,7 +96,15 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       await AudioService.play();
     }
     else{
-      AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
+      mediaItem = MediaItem(  
+        id: widget.song.music,
+        artist: widget.song.artist,
+        album: widget.song.franchise,
+        title: widget.song.title,
+        artUri: Uri.parse(widget.song.cover)
+      );
+      await AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
+      await AudioService.playMediaItem(mediaItem);
     }
   }
 

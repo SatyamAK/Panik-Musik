@@ -42,12 +42,11 @@ class _SongListState extends State<SongList> {
             title: Text(song[index].title),
             subtitle: Text(song[index].artist),
             onTap: (){
-              print(song[index].music);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (BuildContext context)=>AudioPlayerScreen(
                   title: song[index].title,
-                  id: song[index].music
+                  song: song[index]
                 ))
               );
             },

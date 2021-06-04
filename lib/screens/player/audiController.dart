@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -11,6 +13,29 @@ class AudioController extends BackgroundAudioTask{
       playing: true,
       processingState: AudioProcessingState.connecting
     );
+    _audioPlayer.processingStateStream.listen((event) {
+      switch(event){
+        case ProcessingState.idle:
+          // ignore: todo
+          // TODO: Handle this case.
+          break;
+        case ProcessingState.loading:
+          // ignore: todo
+          // TODO: Handle this case.
+          break;
+        case ProcessingState.buffering:
+          // ignore: todo
+          // TODO: Handle this case.
+          break;
+        case ProcessingState.ready:
+          // ignore: todo
+          // TODO: Handle this case.
+          break;
+        case ProcessingState.completed:
+          onStop();
+          break;
+      }
+    });
   }
 
   @override 
@@ -45,8 +70,9 @@ class AudioController extends BackgroundAudioTask{
   }
 
   @override 
-  Future<void> onPlayFromMediaId(String mediaId) async{
-    await _audioPlayer.setUrl(mediaId);
+  Future<void> onPlayMediaItem(MediaItem mediaItem) async{
+    await _audioPlayer.setUrl(mediaItem.id);
+    await AudioServiceBackground.setMediaItem(mediaItem);
     await _audioPlayer.play();
     AudioServiceBackground.setState(
       controls: [MediaControl.pause],

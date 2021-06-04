@@ -38,7 +38,7 @@ ThemeData lightTheme(){
         fontSize:12
       ),
       bodyText2:TextStyle(  
-        fontSize:14
+        fontSize:18
       ),
       headline5: TextStyle(  
         fontSize: 24,

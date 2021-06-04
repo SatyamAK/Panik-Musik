@@ -98,8 +98,14 @@ ThemeData darkTheme(){
         color: Colors.white
       ),
       bodyText2:TextStyle(  
-        fontSize:14,
+        fontSize:13,
         color: Colors.white
+      ),
+      caption: TextStyle(
+        color: Colors.white
+      ),
+      subtitle1: TextStyle(
+        color:Colors.white
       ),
       headline5: TextStyle(  
         fontSize: 24,

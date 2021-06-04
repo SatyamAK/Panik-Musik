@@ -14,26 +14,28 @@ class AudioPlayerScreen extends StatefulWidget{
   _AudioPlayerScreenState createState() => _AudioPlayerScreenState();
 }
 
-class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
+_backgroundTaskEntrypoint() {
+  AudioServiceBackground.run(() => AudioController());
+}
 
-  _backgroundTaskEntrypoint() {
-    AudioServiceBackground.run(() => AudioController());
-  }
-  
-  /*Future<void> playonEnter() async{
+class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
+ 
+  Future<void> playonEnter() async{
     if(AudioService.running){
       await AudioService.playFromMediaId(widget.id);
     }
     else{
+      print('starting');
       await AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
       await AudioService.playFromMediaId(widget.id);
     }
-  }*/
-  /*@override
+  }
+  @override
   void initState(){
-    AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
+    playonEnter();
     super.initState();
-  }*/
+  }
+
   @override 
   Widget build(BuildContext context){
     return Scaffold(
@@ -45,28 +47,26 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           stream: AudioService.playbackStateStream,
           builder: (context, state){
             return (state.data==null)?ElevatedButton(  
-              onPressed: ()async{
-                AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
-              },
+              onPressed: start,
               child: Text('Start'),
             ):Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 640,
-                  width: 480,
+                  height: 320,
+                  width: 320,
                   color: Colors.red,
                   //child: /*Image.network('')*/ 
                 ),
                 SizedBox(height:24),
                 if(state.data.playing)
                   ElevatedButton(  
-                    onPressed: pause(),
+                    onPressed: pause,
                     child: Text('pause'),
                   )
                 else 
                   ElevatedButton(  
-                    onPressed: play(),
+                    onPressed: play,
                     child: Text('Play'),
                   )
               ],
@@ -76,6 +76,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       ),
     );
   }
+
+  start() => AudioService.start(backgroundTaskEntrypoint: _backgroundTaskEntrypoint);
 
   play() async{
     if(AudioService.running){

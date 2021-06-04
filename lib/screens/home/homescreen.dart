@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height:8),
+          SizedBox(height:12),
           Text('Video Games', style: Theme.of(context).textTheme.headline6,),
           SizedBox(height:8),
           Flexible(
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height:8),
+          SizedBox(height:12),
           Text('Artist', style: Theme.of(context).textTheme.headline6,),
           SizedBox(height:8),
           Flexible(

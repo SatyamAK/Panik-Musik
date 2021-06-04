@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Panik Musik',
         theme: lightTheme(),
+        darkTheme: darkTheme(),
+        debugShowCheckedModeBanner: false,
         home: Wrapper()
       ),
     );

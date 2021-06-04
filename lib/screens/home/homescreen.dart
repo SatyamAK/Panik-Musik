@@ -7,8 +7,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Song> songs = Provider.of<List<Song>>(context);
-    //songs.forEach((element) {print(element.franchise);});
-    print(songs.toString());
     return (songs.length==0)?Center(child:CircularProgressIndicator()):SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal:12),
       child: Column(

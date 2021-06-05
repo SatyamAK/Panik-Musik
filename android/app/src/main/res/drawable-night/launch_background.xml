@@ -3,7 +3,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item 
         android:state_checked="true"
-        android:drawable="@android:color/white" />
+        android:drawable="@android:color/black" />
 
     <!-- You can insert your own image assets here -->
     <!-- <item>
@@ -14,6 +14,6 @@
     <item>
     <bitmap
         android:gravity = "center"
-        android:src = "@drawable/panik" />
+        android:src = "@drawable/panik"/>
     </item>
 </layer-list>

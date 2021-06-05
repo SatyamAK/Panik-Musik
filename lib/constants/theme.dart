@@ -117,6 +117,11 @@ ThemeData darkTheme(){
         color: Colors.white
       )
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(
+        color:Colors.white
+      )
+    ),
     cardTheme: CardTheme(
       elevation:12,
       color: Colors.black87,

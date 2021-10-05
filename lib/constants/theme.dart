@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 ThemeData lightTheme(){
   return ThemeData(
     primaryColor: Colors.deepPurpleAccent,
-    accentColor: Colors.deepPurpleAccent,
     appBarTheme: AppBarTheme(  
       centerTitle: true,
       elevation: 0,
@@ -54,14 +53,13 @@ ThemeData lightTheme(){
         borderRadius: BorderRadius.circular(12)
       ),
       shadowColor: Colors.deepPurpleAccent
-    ),
+    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.deepPurpleAccent),
   );
 }
 
 ThemeData darkTheme(){
   return ThemeData(
     primaryColor: Colors.purpleAccent,
-    accentColor: Colors.purpleAccent,
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: AppBarTheme(  
       centerTitle: true,
@@ -129,6 +127,6 @@ ThemeData darkTheme(){
         borderRadius: BorderRadius.circular(12)
       ),
       shadowColor: Colors.purpleAccent
-    ),
+    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.purpleAccent),
   );
 }

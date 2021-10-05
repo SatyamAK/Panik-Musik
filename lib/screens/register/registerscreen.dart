@@ -17,16 +17,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+      body: Container(
         child: (isProcessing)?Center(child: CircularProgressIndicator()):Form( 
           key: _formKey,
-          child: Card(
-            margin: EdgeInsets.symmetric(horizontal:12, vertical:200),
+          child: Center(
             child: Container( 
-              padding: EdgeInsets.symmetric(horizontal:12, vertical: 12), 
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              margin: EdgeInsets.symmetric(horizontal:12, vertical: 12), 
+              child: ListView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   CircleAvatar(
                     backgroundColor: Colors.transparent,

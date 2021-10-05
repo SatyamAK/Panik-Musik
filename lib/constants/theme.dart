@@ -53,7 +53,24 @@ ThemeData lightTheme(){
         borderRadius: BorderRadius.circular(12)
       ),
       shadowColor: Colors.deepPurpleAccent
-    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.deepPurpleAccent),
+    ), 
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.deepPurpleAccent),
+    inputDecorationTheme: InputDecorationTheme(  
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(22),  
+        borderSide: BorderSide(
+          color: Colors.deepPurple,
+          width: 1.8
+        )
+      ),
+      focusedBorder: OutlineInputBorder(  
+        borderRadius: BorderRadius.circular(14),  
+        borderSide: BorderSide(
+          color: Colors.deepPurple,
+          width: 2
+        )
+      )
+    )
   );
 }
 
@@ -115,11 +132,6 @@ ThemeData darkTheme(){
         color: Colors.white
       )
     ),
-    inputDecorationTheme: InputDecorationTheme(
-      hintStyle: TextStyle(
-        color:Colors.white
-      )
-    ),
     cardTheme: CardTheme(
       elevation:12,
       color: Colors.black87,
@@ -127,6 +139,26 @@ ThemeData darkTheme(){
         borderRadius: BorderRadius.circular(12)
       ),
       shadowColor: Colors.purpleAccent
-    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.purpleAccent),
+    ), 
+    inputDecorationTheme: InputDecorationTheme(  
+      hintStyle: TextStyle(  
+        color: Colors.white
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(22),  
+        borderSide: BorderSide(
+          color: Colors.deepPurple,
+          width: 1.8
+        )
+      ),
+      focusedBorder: OutlineInputBorder(  
+        borderRadius: BorderRadius.circular(14),  
+        borderSide: BorderSide(
+          color: Colors.deepPurple,
+          width: 2
+        )
+      )
+    ),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.purpleAccent),
   );
 }

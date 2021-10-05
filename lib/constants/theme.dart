@@ -54,7 +54,7 @@ ThemeData lightTheme(){
       ),
       shadowColor: Colors.deepPurpleAccent
     ), 
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.deepPurpleAccent),
+    colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.deepPurpleAccent),
     inputDecorationTheme: InputDecorationTheme(  
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(22),  
@@ -159,6 +159,7 @@ ThemeData darkTheme(){
         )
       )
     ),
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.purpleAccent),
+    dialogBackgroundColor: Colors.grey[850],
+    colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.purpleAccent),
   );
 }

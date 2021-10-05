@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 100,
                     child:ElevatedButton( 
                       onPressed: () async {
-                        if(!_formKey.currentState.validate()){
+                        if(!_formKey.currentState!.validate()){
                           return null;
                         }
                         setState(() {

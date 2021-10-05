@@ -3,9 +3,9 @@ import 'package:panik_musik/models/song.dart';
 
 class SongList extends StatefulWidget {
   final List<Song> songs;
-  final String title;
+  final String? title;
   const SongList({
-    this.songs,
+    required this.songs,
     this.title
   });
   @override
@@ -27,7 +27,7 @@ class _SongListState extends State<SongList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title)
+        title: Text(widget.title!)
       ),
       body: ListView.builder(
         itemCount: song.length,
@@ -35,11 +35,11 @@ class _SongListState extends State<SongList> {
           return ListTile(
             leading: Container(
               child:Image.network(
-                song[index].cover
+                song[index].cover!
               )
             ),
-            title: Text(song[index].title),
-            subtitle: Text(song[index].artist),
+            title: Text(song[index].title!),
+            subtitle: Text(song[index].artist!),
             onTap: (){
             },
           );

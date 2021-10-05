@@ -5,9 +5,9 @@ import 'package:panik_musik/screens/player/songList.dart';
 
 class SongCardList extends StatefulWidget{
   final List<Song> songs;
-  final String filterType;
+  final String ?filterType;
   const SongCardList({
-    this.songs,
+    required this.songs,
     this.filterType
   });
 
@@ -24,23 +24,23 @@ class _SongCardListState extends State<SongCardList> {
     if(widget.filterType=='anime'){
       widget.songs.forEach((element) {
         if(element.category=='anime'){
-          titles.add(element.franchise);
-          imgs.add(element.cover);
+          titles.add(element.franchise!);
+          imgs.add(element.cover!);
         }
       });
     }
     else if(widget.filterType=='video games'){
       widget.songs.forEach((element) {
         if(element.category=='video game'){
-          titles.add(element.franchise);
-          imgs.add(element.cover);
+          titles.add(element.franchise!);
+          imgs.add(element.cover!);
         }
       });
     }
     else if(widget.filterType=='artist'){
       widget.songs.forEach((element) {
-        titles.add(element.artist);
-        imgs.add(element.artistImg);
+        titles.add(element.artist!);
+        imgs.add(element.artistImg!);
       });
     }
     titles = titles.toSet().toList();

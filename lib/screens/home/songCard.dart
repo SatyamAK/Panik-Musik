@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SongCard extends StatelessWidget{
-  final String title;
-  final String img;
+  final String? title;
+  final String? img;
   const SongCard({
     this.title,
     this.img
@@ -23,12 +23,12 @@ class SongCard extends StatelessWidget{
               width: 130,
               color: Colors.transparent,
               child: Image.network(
-                img,
+                img!,
                 fit: BoxFit.fill,
               )
             ),
             SizedBox(height:8),
-            Text(title, softWrap: true, textAlign: TextAlign.center,)
+            Text(title!, softWrap: true, textAlign: TextAlign.center,)
           ]
         )
       ),

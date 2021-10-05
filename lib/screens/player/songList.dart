@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:panik_musik/models/song.dart';
-import 'package:panik_musik/screens/player/audiPlayer.dart';
 
 class SongList extends StatefulWidget {
   final List<Song> songs;
@@ -42,13 +41,6 @@ class _SongListState extends State<SongList> {
             title: Text(song[index].title),
             subtitle: Text(song[index].artist),
             onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (BuildContext context)=>AudioPlayerScreen(
-                  title: song[index].title,
-                  song: song[index]
-                ))
-              );
             },
           );
         },  

@@ -12,13 +12,15 @@ import 'package:provider/provider.dart';
 late AudioHandler audioHandler;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   audioHandler = await AudioService.init(
-    builder: ()=>AudioController(), 
-    config: AudioServiceConfig(
-      androidNotificationChannelName: 'Panik Musik',
-    )
+    builder: () => AudioController(),
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: 'com.ak.panik_musik.audio',
+      androidNotificationChannelName: 'Audio playback',
+      androidNotificationOngoing: true,
+    ),
   );
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

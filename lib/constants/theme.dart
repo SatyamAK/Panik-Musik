@@ -59,17 +59,20 @@ ThemeData lightTheme(){
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(22),  
         borderSide: BorderSide(
-          color: Colors.deepPurple,
+          color: Colors.deepPurpleAccent,
           width: 1.8
         )
       ),
       focusedBorder: OutlineInputBorder(  
         borderRadius: BorderRadius.circular(14),  
         borderSide: BorderSide(
-          color: Colors.deepPurple,
+          color: Colors.deepPurpleAccent,
           width: 2
         )
       )
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.deepPurpleAccent
     )
   );
 }
@@ -147,19 +150,22 @@ ThemeData darkTheme(){
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(22),  
         borderSide: BorderSide(
-          color: Colors.deepPurple,
+          color: Colors.purpleAccent,
           width: 1.8
         )
       ),
       focusedBorder: OutlineInputBorder(  
         borderRadius: BorderRadius.circular(14),  
         borderSide: BorderSide(
-          color: Colors.deepPurple,
+          color: Colors.purpleAccent,
           width: 2
         )
       )
     ),
     dialogBackgroundColor: Colors.grey[850],
     colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.purpleAccent),
+    iconTheme: IconThemeData(  
+      color: Colors.purpleAccent
+    )
   );
 }

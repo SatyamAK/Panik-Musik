@@ -6,6 +6,7 @@ class Song{
   final String? franchise;
   final String? category;
   final String? music;
+  final String? duration;
 
   const Song({
     this.title,
@@ -14,6 +15,7 @@ class Song{
     this.artistImg,
     this.franchise,
     this.category,
-    this.music
+    this.music,
+    this.duration
   });
 }

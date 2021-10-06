@@ -40,7 +40,8 @@ class _SongListState extends State<SongList> {
                   id: song[index].music!,
                   title: song[index].title!,
                   artUri: Uri.parse(song[index].cover!),
-                  artist: song[index].artist!);
+                  artist: song[index].artist!,
+                  duration: Duration(milliseconds: int.parse(song[index].duration!)));
               await audioHandler.playMediaItem(mediaItem);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AudioPlayerScreen()));

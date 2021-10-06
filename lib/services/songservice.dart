@@ -13,7 +13,8 @@ class SongService{
         cover: e.get('cover'),
         artist: e.get('artist'),
         artistImg: e.get('artistImg'),
-        music: e.get('music')
+        music: e.get('music'),
+        duration: e.get('duration')
       );
     }).toList();
   }

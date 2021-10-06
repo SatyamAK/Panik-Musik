@@ -1,12 +1,21 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+import 'package:panik_musik/components.dart';
 import 'package:panik_musik/main.dart';
+import 'package:rxdart/rxdart.dart';
 
 class MediaState {
   final MediaItem? mediaItem;
   final Duration pos;
   MediaState(this.mediaItem, this.pos);
 }
+
+Stream<MediaState> get mediaStateStream =>
+  Rx.combineLatest2<MediaItem?, Duration, MediaState>(
+    audioHandler.mediaItem, 
+    AudioService.position,
+    (mediaItem, position) => MediaState(mediaItem, position)
+  );
 
 IconButton _button(IconData iconData, VoidCallback onPressed) =>
     IconButton(onPressed: onPressed, icon: Icon(iconData), iconSize: 64,);
@@ -59,6 +68,18 @@ class AudioPlayerScreen extends StatelessWidget {
                     ],
                   );
                 }),
+            SizedBox(height: 8,),
+            StreamBuilder<MediaState>(
+              stream: mediaStateStream,
+              builder: (context, snapshot){
+                final mediaState = snapshot.data;
+                print(mediaState?.mediaItem?.duration.toString());
+                return SeekBar(
+                  duration: mediaState?.mediaItem?.duration ?? Duration.zero, 
+                  position: mediaState?.pos ?? Duration.zero,
+                );
+              }
+            )
           ],
         ),
       )),

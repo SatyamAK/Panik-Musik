@@ -7,9 +7,9 @@ class AudioController extends BaseAudioHandler with QueueHandler, SeekHandler {
   PlaybackState _transformEvent(PlaybackEvent event) {
     return PlaybackState(
       controls: [
-        //MediaControl.rewind,
+        MediaControl.rewind,
         if (_player.playing) MediaControl.pause else MediaControl.play,
-        //MediaControl.fastForward,
+        MediaControl.fastForward,
       ],
       systemActions: const {
         MediaAction.seek,
@@ -47,6 +47,8 @@ class AudioController extends BaseAudioHandler with QueueHandler, SeekHandler {
   Future<void> playMediaItem(MediaItem _mediaItem) async {
     mediaItem.add(_mediaItem);
     await _player.setAudioSource(AudioSource.uri(Uri.parse(_mediaItem.id)));
+    await _player.setUrl(_mediaItem.id);
+    await play();
     return super.playMediaItem(_mediaItem);
   }
 }

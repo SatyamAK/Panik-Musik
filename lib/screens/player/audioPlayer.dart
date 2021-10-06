@@ -18,7 +18,7 @@ Stream<MediaState> get mediaStateStream =>
   );
 
 IconButton _button(IconData iconData, VoidCallback onPressed) =>
-    IconButton(onPressed: onPressed, icon: Icon(iconData), iconSize: 64,);
+    IconButton(onPressed: onPressed, icon: Icon(iconData), iconSize: 48,);
 
 class AudioPlayerScreen extends StatelessWidget {
   @override
@@ -52,7 +52,7 @@ class AudioPlayerScreen extends StatelessWidget {
                   );
                 }),
             SizedBox(
-              height: 8,
+              height: 18,
             ),
             StreamBuilder<bool>(
                 stream: audioHandler.playbackState
@@ -73,7 +73,6 @@ class AudioPlayerScreen extends StatelessWidget {
               stream: mediaStateStream,
               builder: (context, snapshot){
                 final mediaState = snapshot.data;
-                print(mediaState?.mediaItem?.duration.toString());
                 return SeekBar(
                   duration: mediaState?.mediaItem?.duration ?? Duration.zero, 
                   position: mediaState?.pos ?? Duration.zero,

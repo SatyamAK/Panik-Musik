@@ -33,8 +33,8 @@ class AudioController extends BaseAudioHandler with QueueHandler, SeekHandler {
   }
 
   AudioController() {
+    _player.setUrl("musik");
     _player.playbackEventStream.map(_transformEvent).pipe(playbackState);
-    _player.setAudioSource(AudioSource.uri(Uri.parse('_item.id')));
   }
 
   @override

@@ -15,8 +15,8 @@ void main() async {
   audioHandler = await AudioService.init(
     builder: () => AudioController(),
     config: const AudioServiceConfig(
-      androidNotificationChannelId: 'com.ak.panik_musik.audio',
-      androidNotificationChannelName: 'Audio playback',
+      androidNotificationChannelId: 'com.ak.panik_musik.channel.audio',
+      androidNotificationChannelName: 'Panik Musik',
       androidNotificationOngoing: false,
     ),
   );

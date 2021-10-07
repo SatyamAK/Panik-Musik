@@ -17,7 +17,8 @@ void main() async {
     config: const AudioServiceConfig(
       androidNotificationChannelId: 'com.ak.panik_musik.channel.audio',
       androidNotificationChannelName: 'Panik Musik',
-      androidNotificationOngoing: false,
+      androidNotificationOngoing: true,
+      androidStopForegroundOnPause: true,
     ),
   );
   await Firebase.initializeApp();

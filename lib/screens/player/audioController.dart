@@ -3,52 +3,53 @@ import 'package:just_audio/just_audio.dart';
 
 class AudioController extends BaseAudioHandler with QueueHandler, SeekHandler {
   final _player = AudioPlayer();
+  var _playlist = ConcatenatingAudioSource(children: []);
 
-  PlaybackState _transformEvent(PlaybackEvent event) {
-    return PlaybackState(
-      controls: [
-        MediaControl.rewind,
-        if (_player.playing) MediaControl.pause else MediaControl.play,
-        MediaControl.fastForward,
-      ],
-      systemActions: const {
-        MediaAction.seek,
-        MediaAction.seekForward,
-        MediaAction.seekBackward,
-      },
-      androidCompactActionIndices: const [0, 1, 3],
-      processingState: const {
-        ProcessingState.idle: AudioProcessingState.idle,
-        ProcessingState.loading: AudioProcessingState.loading,
-        ProcessingState.buffering: AudioProcessingState.buffering,
-        ProcessingState.ready: AudioProcessingState.ready,
-        ProcessingState.completed: AudioProcessingState.completed,
-      }[_player.processingState]!,
-      playing: _player.playing,
-      updatePosition: _player.position,
-      bufferedPosition: _player.bufferedPosition,
-      speed: _player.speed,
-      queueIndex: event.currentIndex,
-    );
+  Future loadEmptyPlayList() async {
+    try {
+      await _player.setAudioSource(_playlist);
+    } catch (err) {
+      print(err);
+    }
   }
 
   AudioController() {
-    _player.setUrl("musik");
-    _player.playbackEventStream.map(_transformEvent).pipe(playbackState);
+    loadEmptyPlayList();
+    _listenForCurrentSongIndexChanges();
   }
 
   @override
-  Future<void> play() => _player.play();
+  Future<void> play() async {
+    playbackState.add(playbackState.value
+        .copyWith(playing: true, controls: [MediaControl.play]));
+    await _player.play();
+  }
 
   @override
-  Future<void> pause() => _player.pause();
+  Future<void> pause() async {
+    playbackState.add(playbackState.value
+        .copyWith(playing: false, controls: [MediaControl.pause]));
+    await _player.pause();
+  }
 
   @override
-  Future<void> playMediaItem(MediaItem _mediaItem) async {
-    mediaItem.add(_mediaItem);
-    await _player.setAudioSource(AudioSource.uri(Uri.parse(_mediaItem.id)));
-    await _player.setUrl(_mediaItem.id);
-    await play();
-    return super.playMediaItem(_mediaItem);
+  Future<void> updateQueue(List<MediaItem> _mediaItems) async {
+    await _playlist.clear();
+    final _audioSources =
+        _mediaItems.map((song) => AudioSource.uri(Uri.parse(song.id)));
+    await _playlist.addAll(_audioSources.toList());
+    queue.add(_mediaItems);
+    mediaItem.add(_mediaItems[0]);
+  }
+
+  void _listenForCurrentSongIndexChanges() {
+    _player.currentIndexStream.listen((index) {
+      final playlist = queue.value;
+      if (index == null || playlist.isEmpty) return;
+      if (_player.shuffleModeEnabled) {
+        index = _player.shuffleIndices![index];
+      }
+      mediaItem.add(playlist[index]);
+    });
   }
 }

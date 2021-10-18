@@ -32,23 +32,17 @@ class _SongListState extends State<SongList> {
         itemCount: song.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            leading: Container(height: 54, child: Image.network(song[index].cover!, fit: BoxFit.cover,)),
+            leading: Container(child: Image.network(song[index].cover!)),
             title: Text(song[index].title!),
             subtitle: Text(song[index].artist!),
-            trailing: TextButton(
-              child: Text('Add to Queue'),
-              onPressed: (){},
-            ),
             onTap: () async {
-              List<MediaItem> mediaItems = [MediaItem(
+              MediaItem mediaItem = MediaItem(
                   id: song[index].music!,
                   title: song[index].title!,
                   artUri: Uri.parse(song[index].cover!),
                   artist: song[index].artist!,
-                  duration: Duration(milliseconds: int.parse(song[index].duration!)
-                )
-              )];
-              audioHandler.updateQueue(mediaItems);
+                  duration: Duration(milliseconds: int.parse(song[index].duration!)));
+              audioHandler.playMediaItem(mediaItem);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AudioPlayerScreen()));
             },

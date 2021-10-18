@@ -33,7 +33,7 @@ class AudioPlayerScreen extends StatelessWidget {
                 stream: audioHandler.mediaItem,
                 builder: (context, snapshot) {
                   final mediaItem = snapshot.data;
-                  return (snapshot.data==null)?SizedBox():Text(
+                  return Text(
                     mediaItem!.title,
                     style: Theme.of(context).textTheme.headline5,
                   );
@@ -45,10 +45,7 @@ class AudioPlayerScreen extends StatelessWidget {
                 stream: audioHandler.mediaItem,
                 builder: (context, snapshot) {
                   final mediaItem = snapshot.data;
-                  return (snapshot.data==null)?Container(
-                      margin: EdgeInsets.only(bottom: 160),
-                      child: Center(child:CircularProgressIndicator())
-                    ):Container(  
+                  return Container(  
                     height: 480,
                     width: 320,
                     child: Image.network(mediaItem!.artUri!.toString())

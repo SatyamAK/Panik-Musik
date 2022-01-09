@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panik_musik/components/bottomNavigationBar.dart';
 import 'package:panik_musik/pages/login_page.dart';
 import 'package:panik_musik/theme.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme(),
       darkTheme: darkTheme(),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: const BottomNavBar(),
     );
   }
 }

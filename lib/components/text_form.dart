@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panik_musik/constants/validators.dart';
 
 Container textFormField(
   TextEditingController textEditingController,
@@ -28,7 +29,22 @@ Container textFormField(
             width: 4.0
           )
         ),
+        errorBorder: OutlineInputBorder(  
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 3.0
+          )
+        ),
+        focusedErrorBorder : OutlineInputBorder(  
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 4.0
+          )
+        ),
       ),
+      validator: (hintText=='email')?emailValidator:passwordValidator
     )
   );
 }

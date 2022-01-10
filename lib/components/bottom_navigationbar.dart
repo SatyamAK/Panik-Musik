@@ -28,13 +28,13 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
       bottomNavigationBar: Container(  
         height: 64,
         decoration: BoxDecoration( 
-          color: Theme.of(context).backgroundColor.withOpacity(0.4),
           gradient: LinearGradient(  
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [
-              Theme.of(context).backgroundColor.withOpacity(0.3),
-              Theme.of(context).backgroundColor.withOpacity(0.3),
+              Theme.of(context).backgroundColor.withOpacity(0.2),
+              Colors.transparent,
+              Colors.transparent,
               Colors.transparent
             ]
           )

@@ -36,7 +36,9 @@ ThemeData lightTheme() {
         fontWeight: FontWeight.normal
       )
     ),
-
+    tabBarTheme: const TabBarTheme(  
+      labelColor: Colors.black
+    ),
     appBarTheme: const AppBarTheme(  
       titleTextStyle: TextStyle(
         color: DayColor.textColor,

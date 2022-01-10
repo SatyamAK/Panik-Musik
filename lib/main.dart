@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:panik_musik/components/bottomNavigationBar.dart';
+import 'package:panik_musik/components/bottom_navigationbar.dart';
 import 'package:panik_musik/pages/login_page.dart';
 import 'package:panik_musik/theme.dart';
 

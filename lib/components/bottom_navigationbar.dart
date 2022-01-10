@@ -24,10 +24,24 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       bottomNavigationBar: Container(  
         height: 64,
-        color: Theme.of(context).primaryColor.withOpacity(0.7),
+        decoration: BoxDecoration( 
+          color: Theme.of(context).backgroundColor.withOpacity(0.4),
+          gradient: LinearGradient(  
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [
+              Theme.of(context).backgroundColor.withOpacity(0.3),
+              Theme.of(context).backgroundColor.withOpacity(0.3),
+              Colors.transparent
+            ]
+          )
+        ),
         child: TabBar(  
+          indicatorWeight: 4.0,
+          labelColor: Theme.of(context).primaryColor,
           controller: _tabController,
           tabs: const [
             Icon(FontAwesomeIcons.home),

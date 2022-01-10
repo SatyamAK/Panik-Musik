@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:panik_musik/components/button.dart';
+import 'package:panik_musik/components/buttons.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({ Key? key }) : super(key: key);
@@ -8,7 +8,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: button(Theme.of(context).primaryColor, FontAwesomeIcons.signOutAlt, (){}, context),
+      child: button(Theme.of(context).primaryColor, 'Logout', FontAwesomeIcons.signOutAlt, (){}, context),
     );
   }
 }

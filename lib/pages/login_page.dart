@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:panik_musik/components/button.dart';
+import 'package:panik_musik/components/buttons.dart';
 import 'package:panik_musik/components/text_form.dart';
 
 class LoginPage extends StatelessWidget {
@@ -37,9 +37,9 @@ class LoginPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          button(Theme.of(context).primaryColor,
+                          button(Theme.of(context).primaryColor, '  Login',
                               FontAwesomeIcons.signInAlt, () {}, context),
-                          button(Theme.of(context).primaryColor,
+                          button(Theme.of(context).primaryColor, '  Register',
                               Icons.person_add_alt_rounded, () {}, context)
                         ],
                       ),
@@ -49,19 +49,11 @@ class LoginPage extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Container(
-                      margin: const EdgeInsets.only(top: 8, bottom: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                         Text(
-                            'Sign In Using:',
-                            style: Theme.of(context).textTheme.headline2,
-                          ),
-                          button(Colors.red,
-                              FontAwesomeIcons.google, () {}, context)
-                        ],
+                      margin: const EdgeInsets.only(top: 20, bottom: 20),
+                      child: button(Colors.red, 'Sign in with Google',
+                        FontAwesomeIcons.google, () {}, context
                       ),
-                    ),
+                    )
                   ],
                 ))
               ],

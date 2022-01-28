@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-SizedBox collectionCard(String title, img, BuildContext context) {
+SizedBox collectionCard(String? title, img, BuildContext context) {
   return SizedBox(
     height: 128,
     width: 128,
@@ -16,7 +16,7 @@ SizedBox collectionCard(String title, img, BuildContext context) {
             margin: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
             child: Image.network(img, fit: BoxFit.cover,)
           ),
-          Text(title, style: Theme.of(context).textTheme.button)
+          Text(title!, style: Theme.of(context).textTheme.subtitle1, overflow: TextOverflow.fade,)
         ],
       ),
     ),

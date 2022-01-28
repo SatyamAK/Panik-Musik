@@ -22,7 +22,7 @@ ThemeData lightTheme() {
       ),
       button: TextStyle(
         color: DayColor.buttonTextColor,
-        fontSize: Values.cardTitle,
+        fontSize: Values.buttonTitle,
         fontWeight: FontWeight.w600
       ),
       bodyText1: TextStyle(
@@ -69,7 +69,7 @@ ThemeData darkTheme() {
       ),
       button: TextStyle(
         color: NightColor.buttonTextColor,
-        fontSize: Values.cardTitle,
+        fontSize: Values.buttonTitle,
         fontWeight: FontWeight.w600
       ),
       bodyText1: TextStyle(

@@ -1,5 +1,8 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+import 'package:panik_musik/main.dart';
 import 'package:panik_musik/models/song.dart';
+import 'package:panik_musik/pages/audioplayer_page.dart';
 
 class SongListPage extends StatelessWidget {
   final String? name;
@@ -30,6 +33,17 @@ class SongListPage extends StatelessWidget {
               ),
               title: Text(songs[index].title!),
               subtitle: Text(songs[index].franchise!, style: Theme.of(context).textTheme.subtitle1,),
+              onTap: () async{
+                MediaItem mediaItem = MediaItem(
+                  id: songs[index].music!,
+                  title: songs[index].title!,
+                  artUri: Uri.parse(songs[index].cover!)
+                );
+                await audioHandler.playMediaItem(mediaItem);
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (contex)=> const AudioPlayerPage())
+                );
+              },
             ),
           );
         }

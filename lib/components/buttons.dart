@@ -19,3 +19,9 @@ ElevatedButton button(Color color, String string, IconData icon,
     )
   );
 }
+
+IconButton mediabutton(IconData iconData, VoidCallback onPressed, BuildContext context) => IconButton(
+  icon: Icon(iconData, color: Theme.of(context).primaryColor,),
+  iconSize: 64.0,
+  onPressed: onPressed,
+);

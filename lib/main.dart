@@ -1,15 +1,26 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:panik_musik/components/bottom_navigationbar.dart';
 import 'package:panik_musik/pages/login_page.dart';
+import 'package:panik_musik/services/audiplayer_service.dart';
 import 'package:panik_musik/services/auth_service.dart';
 import 'package:panik_musik/theme.dart';
 import 'package:provider/provider.dart';
 
+late AudioHandler audioHandler;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  audioHandler = await AudioService.init(  
+    builder: () => AudioPlayerService(),
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: 'com.ryanheise.myapp.channel.audio',
+      androidNotificationChannelName: 'Audio playback',
+      androidNotificationOngoing: true,
+    )
+  );
   runApp(const MyApp());
 }
 

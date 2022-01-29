@@ -3,7 +3,7 @@ class Song {
   final String? artistImg;
   final String? category;
   final String? cover;
-  final double? duration;
+  final int? duration;
   final String? franchise;
   final String? music;
   final String? title;
@@ -23,7 +23,7 @@ class Song {
     artistImg : object['artistImg'] as String,
     category : object['category']as String,
     cover : object['cover']as String,
-    duration : object['duration'] as double,
+    duration : object['duration'] as int,
     franchise : object['franchise']as String,
     music : object['music']as String,
     title : object['title']as String

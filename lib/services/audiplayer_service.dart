@@ -2,7 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
 
 class AudioPlayerService extends BaseAudioHandler with SeekHandler {
-  static final _item = MediaItem(
+  var _item = MediaItem(
     id: 'https://firebasestorage.googleapis.com/v0/b/panik-musik-f613c.appspot.com/o/7!!%20-%20Lovers.mp3?alt=media&token=f576e434-27c0-4b4e-9f20-799582c222f6',
     album: "Naruto Shippuden",
     title: "Lovers",
@@ -49,17 +49,20 @@ class AudioPlayerService extends BaseAudioHandler with SeekHandler {
     );
   }
 
-  void updateCurrMediaItem(MediaItem _item) {
-    mediaItem.add(_item);
+  Future<void> updateCurrMediaItem(MediaItem _newItem) async {
+    mediaItem.add(_newItem);
+    _item = _newItem;
   }
 
-  // @override
-  // Future<void> playMediaItem(MediaItem mediaItem) async {
-  //   if (_player.playing) await _player.stop();
-  //   updateCurrMediaItem(mediaItem);
-  //   await _player.setAudioSource(AudioSource.uri(Uri.parse(mediaItem.id)));
-  //   await _player.play();
-  // }
+  @override
+  Future<void> playMediaItem(MediaItem mediaItem) async {
+    if (_item.id == mediaItem.id) return;
+    
+    await _player.stop();
+    await updateCurrMediaItem(mediaItem);
+    await _player.setAudioSource(AudioSource.uri(Uri.parse(mediaItem.id)));
+    await _player.play();
+  }
 
   @override
   Future<void> play() => _player.play();

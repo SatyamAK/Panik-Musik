@@ -37,9 +37,10 @@ class SongListPage extends StatelessWidget {
                 MediaItem mediaItem = MediaItem(
                   id: songs[index].music!,
                   title: songs[index].title!,
-                  artUri: Uri.parse(songs[index].cover!)
+                  artUri: Uri.parse(songs[index].cover!),
+                  duration: Duration(milliseconds: songs[index].duration!)
                 );
-                await audioHandler.playMediaItem(mediaItem);
+                audioHandler.playMediaItem(mediaItem);
                 Navigator.push(
                   context, MaterialPageRoute(builder: (contex)=> const AudioPlayerPage())
                 );

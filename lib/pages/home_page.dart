@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         artistImg: doc.get('artistImg'),
         category: doc.get('category'),
         cover: doc.get('cover'),
-        duration: double.parse(doc.get('duration')),
+        duration: int.parse(doc.get('duration')),
         franchise: doc.get('franchise'),
         music: doc.get('music'),
         title: doc.get('title')
